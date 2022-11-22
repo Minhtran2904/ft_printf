@@ -1,2 +1,2 @@
 # ft_printf
-Third solo project entering Hive-42
+Because ft_putnbr() and ft_putstr() aren’t enough
