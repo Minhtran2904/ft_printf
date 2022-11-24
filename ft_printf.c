@@ -12,11 +12,37 @@
 
 #include "ft_printf.h"
 
-int	ft_putchar(char *s)
+int	my_putstr(char *s)
 {
-	while (*s);
-		write (1, &s, 1);
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
 	return (1);
+}
+
+int	my_putchar(int a)
+{
+	write (1, &a, 1);
+	return (1);
+}
+
+int	my_formats(va_list args, const char format)
+{
+	int	len;
+
+	len = 0;
+	if (format == 'c')
+		len += my_putchar(va_arg(args, int));
+	else if (format == 's')
+		len += my_putstr(va_arg(args, char *));
+	else if (format == 'p')
+		len += ptr_print(va_arg(args, unsigned long long));
+	return (len);
 }
 
 int	ft_printf(const char *s, ...)
@@ -32,11 +58,12 @@ int	ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%')
 		{
-			len = my_formats(args, s[i + 1]);
+			len += my_formats(args, s[i + 1]);
+			i++;
 		}
 		else
 		{
-			len = ft_putchar(s[i]);
+			len += my_putchar(s[i]);
 		}
 		i++;
 	}
