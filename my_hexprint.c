@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_ptrprint.c                                      :+:      :+:    :+:   */
+/*   my_hexprint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mitran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 11:24:47 by mitran            #+#    #+#             */
-/*   Updated: 2022/11/24 11:24:49 by mitran           ###   ########.fr       */
+/*   Created: 2022/11/25 10:06:14 by mitran            #+#    #+#             */
+/*   Updated: 2022/11/25 10:06:15 by mitran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ptr_len(size_t n)
+int	hex_len(unsigned int n)
 {
 	int	i;
 
@@ -25,18 +25,21 @@ int	ptr_len(size_t n)
 	return (i);
 }
 
-void putnbr_ptr(size_t n)
+void	putnbr_hex(unsigned int n, const char format)
 {
 	if (n >= 16)
 	{
-		putnbr_ptr(n / 16);
-		putnbr_ptr(n % 16);		
+		putnbr_hex(n / 16, format);
+		putnbr_hex(n % 16, format);
 	}
 	else
 	{
 		if (n > 9)
 		{
-			ft_putchar_fd((n % 10) + 'a', 1);
+			if (format == 'x')
+				ft_putchar_fd((n % 10) + 'a', 1);
+			if (format == 'X')
+				ft_putchar_fd((n % 10) + 'A', 1);
 		}
 		else
 		{
@@ -45,20 +48,11 @@ void putnbr_ptr(size_t n)
 	}
 }
 
-int ptr_print(unsigned long long ptr)
+int	hex_print(unsigned int n, const char format)
 {
-	int	len;
-
-	len = 0;
-	len += write(1, "0x", 2);
-	if (!ptr)
-	{
-		len += write(1, "0", 1);
-	}
+	if (n == 0)
+		return (write(1, "0", 1));
 	else
-	{
-		putnbr_ptr(ptr);
-		len += ptr_len(ptr);
-	}
-	return (len);
+		putnbr_hex(n, format);
+	return (hex_len(n));
 }

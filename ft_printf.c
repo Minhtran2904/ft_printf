@@ -12,19 +12,6 @@
 
 #include "ft_printf.h"
 
-int	my_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	return (1);
-}
-
 int	my_putchar(int a)
 {
 	write (1, &a, 1);
@@ -42,6 +29,14 @@ int	my_formats(va_list args, const char format)
 		len += my_putstr(va_arg(args, char *));
 	else if (format == 'p')
 		len += ptr_print(va_arg(args, unsigned long long));
+	else if (format == 'x' || format == 'X')
+		len += hex_print(va_arg(args, unsigned int), format);
+	else if (format == 'd' || format == 'i')
+		len += my_putnbr(va_arg(args, int));
+	else if (format == 'u')
+		len += my_u_putnbr(va_arg(args, unsigned int));
+	else if (format == '%')
+		return (len = write(1, "%", 1));
 	return (len);
 }
 

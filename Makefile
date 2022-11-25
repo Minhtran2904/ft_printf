@@ -12,30 +12,27 @@
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c #REMEMBER TO ADD MORE FT HERE
+SRC = ft_printf.c my_ptrprint.c my_hexprint.c my_putnbr.c my_u_putnbr.c#REMEMBER TO ADD MORE FT HERE
 
-FLAGS = -Wextra -Wall -Werror
+OBJ = $(SRC:.c=.o)
 
-INCLUDE = libft
+COMPILE = cc -Wextra -Wall -Werror -c
 
 all: $(NAME)
 
 $(NAME):
-		$(SRC:.c=.o) libft
-		cc -c -I $(INCLUDE) $(FLAGS) $(SRC)
-		ar rc $(NAME) $(SRC:.c=.o)
-
-libft:
-		make -c libft
+		$(COMPILE) ft_printf.h $(SRC)
+		make -C ./libft
 		cp libft/libft.a $(NAME)
+		ar rc $(NAME) $(OBJ)
 		ranlib $(NAME)
 
 clean:
-		make -c libft clean
-		/bin/rm -f $(SRC:.c=.o)
+		make -C ./libft clean
+		/bin/rm -f $(OBJ)
 
 fclean: clean
-		make -c libft fclean
+		make -C ./libft fclean
 		/bin/rm -f $(NAME)
 
 re: fclean all

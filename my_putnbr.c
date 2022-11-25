@@ -1,64 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_ptrprint.c                                      :+:      :+:    :+:   */
+/*   my_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mitran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 11:24:47 by mitran            #+#    #+#             */
-/*   Updated: 2022/11/24 11:24:49 by mitran           ###   ########.fr       */
+/*   Created: 2022/11/25 14:50:11 by mitran            #+#    #+#             */
+/*   Updated: 2022/11/25 14:50:12 by mitran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ptr_len(size_t n)
+int	my_putstr(char *s)
 {
 	int	i;
 
 	i = 0;
-	while (n != 0)
+	if (s == NULL)
 	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
+	while (s[i])
+	{
+		write(1, &s[i], 1);
 		i++;
-		n = n / 16;
 	}
 	return (i);
 }
 
-void putnbr_ptr(size_t n)
+int	my_putnbr(int n)
 {
-	if (n >= 16)
-	{
-		putnbr_ptr(n / 16);
-		putnbr_ptr(n % 16);		
-	}
-	else
-	{
-		if (n > 9)
-		{
-			ft_putchar_fd((n % 10) + 'a', 1);
-		}
-		else
-		{
-			ft_putchar_fd(n + '0', 1);
-		}
-	}
-}
-
-int ptr_print(unsigned long long ptr)
-{
-	int	len;
+	int		len;
+	char	*nb;
 
 	len = 0;
-	len += write(1, "0x", 2);
-	if (!ptr)
-	{
-		len += write(1, "0", 1);
-	}
-	else
-	{
-		putnbr_ptr(ptr);
-		len += ptr_len(ptr);
-	}
+	nb = ft_itoa(n);//free
+	len = my_putstr(nb);
+	free(nb);
 	return (len);
 }
