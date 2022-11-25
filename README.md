@@ -14,10 +14,18 @@ Recreating:
 
 • Makefile
 ````
-Progress update:
-Day1: 
-Basic Makefile done
+Progress update:  
+#### Day1:  
+Basic Makefile done  
 
-Day2:
-flags done: cs
+#### Day2:  
+flags done: cs  
 flags left: ~cs~pdiuxX%
+
+#### Day3:  
+flags done: cspdiuxX%  
+flags left: ~cspdiuxX%~
+
+#### to do: 
+run norminette  
+check logic
