@@ -6,7 +6,7 @@
 /*   By: mitran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:24:47 by mitran            #+#    #+#             */
-/*   Updated: 2022/11/24 11:24:49 by mitran           ###   ########.fr       */
+/*   Updated: 2022/11/28 09:50:59 by mitran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	ptr_len(size_t n)
 	return (i);
 }
 
-void putnbr_ptr(size_t n)
+void	putnbr_ptr(size_t n)
 {
 	if (n >= 16)
 	{
 		putnbr_ptr(n / 16);
-		putnbr_ptr(n % 16);		
+		putnbr_ptr(n % 16);
 	}
 	else
 	{
@@ -45,7 +45,7 @@ void putnbr_ptr(size_t n)
 	}
 }
 
-int ptr_print(unsigned long long ptr)
+int	ptr_print(unsigned long long ptr)
 {
 	int	len;
 
