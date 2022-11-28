@@ -36,7 +36,7 @@ int	my_putnbr(int n)
 	char	*nb;
 
 	len = 0;
-	nb = ft_itoa(n);//free
+	nb = ft_itoa(n);
 	len = my_putstr(nb);
 	free(nb);
 	return (len);
