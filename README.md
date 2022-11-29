@@ -30,7 +30,6 @@ flags left: ~cspdiuxX%~
 run norminette  
 check logic
 
-~~~~~~~~~~~~~~~~~~
 As of 29.11.2022 I passed this project with 100% rewarding point
 <img width="218" alt="image" src="https://user-images.githubusercontent.com/97359403/204516338-80d1e6eb-7763-401e-8c2b-03268ae75936.png">
 
